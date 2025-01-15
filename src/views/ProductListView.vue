@@ -1,27 +1,39 @@
 <script setup>
 import ProductListNavbarComponent from '@/components/ProductListNavbarComponent.vue';
 import axios from 'axios';
+
 import { onMounted } from 'vue';
 import { ref } from 'vue';
 import { reactive } from 'vue';
 
 const categories = reactive([{ id: 0, name: '全部' }])
 const products = reactive({})
-const datas = ref({ "categoryid": 0, "is_feature": false})
+const datas = ref({ "categoryid": 0})//, "is_feature": false
 
 const loadProducts = async () => {
     const BASE_URL = import.meta.env.VITE_APIURL
-    const API_URL = `${BASE_URL}/insuranceSpring_productlist/productlist/GetAllProduct`
-    const response = await axios.get(API_URL, datas.value)
-    Object.assign(products, response.data)
-    console.log(products);
     
+    let API_URL = `${BASE_URL}/insuranceSpring_productlist/productlist/GetAllProduct`;
 
+    // 根据分类ID决定 API 路径
+    if (datas.value.categoryid !== 0) {
+        Object.keys(products).forEach(key => delete products[key]);
+        
+        API_URL = `${BASE_URL}/insuranceSpring_productlist/productlist/GetAllProduct/${datas.value.categoryid}`;
+    }
+    
+    const response = await axios.get(API_URL)
+    Object.assign(products, response.data)
+
+    
+    
 }
 
-const CategoryHandler = id => {
-    datas.value.categoryid = id
-}
+const CategoryHandler = async (id) => {
+    datas.value.categoryid = id;  // 更新分类ID
+    await loadProducts();
+};
+
 
 onMounted(async () => {
     loadProducts();
