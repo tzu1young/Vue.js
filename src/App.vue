@@ -15,7 +15,7 @@ const show = ref(true)
 
 <template>
     <div class="container">
-        <h2>Hello Vue!!!!!</h2>
+        
         <NavbarComponent></NavbarComponent>
 
 

@@ -14,7 +14,6 @@ watchEffect(async () => {
   const response = await fetch(API_URL)
   const datas = await response.json();
   categories.value = datas;
-  console.log(categories.value)
 })
 </script>
 <template>
