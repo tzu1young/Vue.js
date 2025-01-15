@@ -1,24 +1,30 @@
 <script setup>
 import ProductListNavbarComponent from '@/components/ProductListNavbarComponent.vue';
+import axios from 'axios';
+import { onMounted } from 'vue';
+import { ref } from 'vue';
+import { reactive } from 'vue';
 
-const categories = reactive([])
+const categories = reactive([{ id: 0, name: '全部' }])
 const products = reactive({})
-const datas = ref({ "categoryid": 0, "keyword": "", "start": 0, "rows": 0, "dir": false, "sort": "productid" })
+const datas = ref({ "categoryid": 0, "is_feature": false})
 
-const loadSpots = async () => {
-    const API_URL = `${import.meta.env.VITE_API_SPOTURL}/insuranceSpring_productlist/productlist/GetAllProduct`
-    const response = await axios.post(API_URL, datas.value)
+const loadProducts = async () => {
+    const BASE_URL = import.meta.env.VITE_APIURL
+    const API_URL = `${BASE_URL}/insuranceSpring_productlist/productlist/GetAllProduct`
+    const response = await axios.get(API_URL, datas.value)
     Object.assign(products, response.data)
+    console.log(products);
+    
 
 }
 
 const CategoryHandler = id => {
     datas.value.categoryid = id
-    datas.value.start = 1
 }
 
 onMounted(async () => {
-    loadSpots();
+    loadProducts();
 })
 
 
@@ -32,16 +38,13 @@ onMounted(async () => {
         <ProductListNavbarComponent @categoryClick="CategoryHandler"></ProductListNavbarComponent>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-        <div class="col" v-for="{ spotId, spotImage, spotTitle, spotDescription, address } in products.list" :key="spotId">
+        <div class="col" v-for="product in products" :key="product.productid">
             <div class="card h-100">
-                <img :src="spotImage" class="card-img-top" :alt="spotTitle">
+                <img :src="product.productImage" class="card-img-top" :alt="product.productname">
                 <div class="card-body">
-                    <h5 class="card-title">{{ spotId }}-{{ spotTitle }}</h5>
-                    <p class="card-text">{{ spotDescription.length <= 100 ? spotDescription :
-                        spotDescription.substring(0, 100) }}...</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">{{ address }}</small>
+                    <h5 class="card-title">{{ product.productname }}</h5>
+                    <!-- <p class="card-text">{{ product.productDescription.length <= 100 ? product.productDescription :
+                        product.productDescription.substring(0, 100) }}...</p> -->
                 </div>
             </div>
         </div>
