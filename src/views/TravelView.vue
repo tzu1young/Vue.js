@@ -1,4 +1,5 @@
 <script setup>
+import Calculator from '@/components/Calculator.vue';
 import TravelAdComponent from '@/components/TravelAdComponent.vue';
 
     
@@ -11,6 +12,7 @@ import TravelAdComponent from '@/components/TravelAdComponent.vue';
 
     <TravelAdComponent></TravelAdComponent>
 </div>
+<Calculator></Calculator>
 <ul>
     <li>
         <!-- <RouterLink :to="{ name: 'travel' }">旅平險</RouterLink> -->
