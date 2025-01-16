@@ -8,7 +8,8 @@ import { reactive } from 'vue';
 
 const categories = reactive([{ id: 0, name: '全部' }])
 const products = reactive({})
-const datas = ref({ "categoryid": 0})//, "is_feature": false
+const datas = ref({ "categoryid": 1})//, "is_feature": false
+
 
 const loadProducts = async () => {
     const BASE_URL = import.meta.env.VITE_APIURL
@@ -48,13 +49,15 @@ onMounted(async () => {
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
         <div class="col" v-for="product in products" :key="product.productid">
             <div class="card h-100">
-                <RouterLink :to="{ name: 'categoryProduct', params: { categoryname: product.category.categoryname, id: product.productid } }">
+                <RouterLink :to="{ name: `category${datas.categoryid}`, params: { categoryid: datas.categoryid} }">
                 <img :src="product.productImage" class="card-img-top" :alt="product.productname">
                 </RouterLink>
+
                 <div class="card-body">
                     <h5 class="card-title">{{ product.productname }}</h5>
                     <!-- <p class="card-text">{{ product.productDescription.length <= 100 ? product.productDescription :
                         product.productDescription.substring(0, 100) }}...</p> -->
+                        <p>{{ datas.categoryid }}</p>
                 </div>
             </div>
         </div>

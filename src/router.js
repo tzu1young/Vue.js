@@ -5,12 +5,22 @@ import TravelView from "./views/TravelView.vue";
 //路由設定
 //URL => Component
 const routes = [
-    { path: "/productlist", component: ProductListView, name: "productlist"},
-        // children:[
-    { path: "/productlist/travel", component: TravelView, name: "travel"}
-        
-     
-    
+    { path: "/productlist", component: ProductListView, name: "productlist" },
+    // children:[
+    { path: "/productlist/travel", component: TravelView, name: "travel" },
+
+    //category1
+    { path: '/:categoryid/', name: 'category1', component: TravelView, props: true },
+    { path: '/:categoryid/', name: 'category2', component: TravelView, props: true },
+    { path: '/:categoryid/', name: 'category3', component: TravelView, props: true },
+    { path: '/:categoryid/', name: 'category4', component: TravelView, props: true },
+    { path: '/:categoryid/', name: 'category5', component: TravelView, props: true },
+    { path: '/:categoryid/', name: 'category6', component: TravelView, props: true },
+    { path: '/:categoryid/', name: 'category7', component: TravelView, props: true },
+    { path: '/:categoryid/', name: 'category8', component: TravelView, props: true },
+    // { path: '/:categoryid/', name: 'category(.*)*', component: TravelView, props: true }, name不支持正則表達式
+
+
 ]
 
 const router = createRouter({
