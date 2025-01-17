@@ -120,6 +120,7 @@ export default {
         <option value="500">500萬</option>
         <option value="300">300萬</option>
         <option value="100">100萬</option>
+        <option value="10">10萬</option>
       </select>
       <p>保險費用：{{ insuranceCost }} 元</p>
 
