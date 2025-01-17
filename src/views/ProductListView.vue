@@ -50,14 +50,14 @@ onMounted(async () => {
         <div class="col" v-for="product in products" :key="product.productid">
             <div class="card h-100">
                 <RouterLink :to="{ name: `category${datas.categoryid}`, params: { categoryid: datas.categoryid} }">
-                <img :src="product.productImage" class="card-img-top" :alt="product.productname">
+                <img :src="product.productPicture" class="card-img-top" :alt="product.productname">
                 </RouterLink>
 
                 <div class="card-body">
                     <h5 class="card-title">{{ product.productname }}</h5>
-                    <!-- <p class="card-text">{{ product.productDescription.length <= 100 ? product.productDescription :
-                        product.productDescription.substring(0, 100) }}...</p> -->
-                        <p>{{ datas.categoryid }}</p>
+                    <p class="card-text">{{ product.productDescription.length <= 100 ? product.productDescription :
+                        product.productDescription.substring(0, 100) }}...</p>
+                        <!-- <p>{{ datas.categoryid }}</p> -->
                 </div>
             </div>
         </div>

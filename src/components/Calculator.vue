@@ -138,6 +138,79 @@ export default {
       </div>
     </div>
 
+    <!-- 富邦表格樣式 要和上面合併-->
+    <div class="row py-3 m-0 align-items-center">
+    <div class="col-12 col-md-auto ps-2 py-2 mx-2">
+        <div class="d-flex align-items-center">
+            <img src="" width="15" height="15" alt="icon_paperAdd" loading="lazy">
+            <span>附加醫療</span>
+        </div>
+    </div>
+    <div class="col-12 col-md-9">
+        <div class="d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-auto">
+                <input type="checkbox" id="custom-check-medical" checked="">
+                <label for="custom-check-medical">傷害醫療</label>
+            </div>
+            <div class="col"></div>
+            <div class="col-auto col-sm-4 col-lg-2 mb-2 text-end">
+                <select id="medical-amt" name="MedicalAmt" class="form-select">
+                    <option value="150" selected="">150萬</option>
+                </select>
+            </div>
+            <div class="col-2 col-lg-1 mb-2 text-end d-flex justify-content-end align-items-center p-1">
+                <span>131</span>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                元
+            </div>
+        </div>
+        <div>
+            <div class="d-flex flex-wrap justify-content-end">
+                <div class="col-auto">
+                    <input type="checkbox" id="custom-check-abroad" name="add-checkbox">
+                    <label for="custom-check-abroad">海外突發疾病醫療</label>
+                    <i class="fas fa-question-circle" data-bs-toggle="modal" data-bs-target="#js-annex-terms"></i>
+                </div>
+                <div class="col"></div>
+                <div class="col-auto col-sm-4 col-lg-2 mb-2 text-end">
+                    <select id="abroad-amt" name="AbroadAmt" class="form-select">
+                        <option value="150" selected="">150萬</option>
+                    </select>
+                </div>
+                <div class="col-2 col-lg-1 mb-2 text-end d-flex justify-content-end align-items-center p-1">
+                    <span>317</span>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                    元
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div class="d-flex flex-wrap justify-content-end">
+                    <div class="col-auto">
+                        <input type="checkbox" id="custom-check-transport" name="add-checkbox">
+                        <label for="custom-check-transport">海外醫療專機運送</label>
+                        <i class="fas fa-question-circle" data-bs-toggle="modal" data-bs-target="#js-annex-terms"></i>
+                        <div style="display: none;">
+                            <span>旅遊地點非服務區域</span>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col-2 col-lg-1 mb-2 text-end d-flex justify-content-end align-items-center p-1">
+                        <span>165</span>
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                        元
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- 保費合計 -->
     <div class="section">
       <h3>保費合計：{{ totalCost }} 元</h3>
