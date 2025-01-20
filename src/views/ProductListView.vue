@@ -55,8 +55,7 @@ onMounted(async () => {
 
                 <div class="card-body">
                     <h5 class="card-title">{{ product.productname }}</h5>
-                    <p class="card-text">{{ product.productDescription.length <= 100 ? product.productDescription :
-                        product.productDescription.substring(0, 100) }}...</p>
+                    <p class="card-text">    {{ product.productDescription && product.productDescription.length <= 100 ? product.productDescription : (product.productDescription ? product.productDescription.substring(0, 100) : '')}}</p>
                         <!-- <p>{{ datas.categoryid }}</p> -->
                 </div>
             </div>

@@ -45,10 +45,10 @@ export default {
   },
     totalCost() {
       let total = this.insuranceCost ;
-      if (this.extraInjuryCoverage) total += Math.floor(total / 3);
+      if (this.extraInjuryCoverage) total += Math.floor(this.insuranceCost / 3);
       if (this.isOverseas) {
-        if (this.extraEmergencyCoverage) total +=  Math.floor(total * 0.8);
-        if (this.extraTransportCoverage) total +=  Math.floor(total / 2);
+        if (this.extraEmergencyCoverage) total +=  Math.floor(this.insuranceCost * 0.8);
+        if (this.extraTransportCoverage) total +=  Math.floor(this.insuranceCost / 2);
       }
       return total;
     },
@@ -121,23 +121,10 @@ export default {
         <option value="300">300萬</option>
         <option value="100">100萬</option>
       </select>
-      <p>保險費用：{{ insuranceCost }} 元</p>
-
-      <!-- 附加醫療 -->
-      <div>
-        <h4>附加醫療</h4>
-        <label>
-          <input type="checkbox" v-model="extraInjuryCoverage" /> 傷害醫療
-        </label>
-        <label v-if="isOverseas">
-          <input type="checkbox" v-model="extraEmergencyCoverage" /> 海外突發疾病醫療
-        </label>
-        <label v-if="isOverseas">
-          <input type="checkbox" v-model="extraTransportCoverage" /> 海外醫療專機運送
-        </label>
-      </div>
+      <p>保險費用：{{ insuranceCost }} 元</p>   
     </div>
-
+    
+    <!-- 附加醫療 -->
     <!-- 富邦表格樣式 要和上面合併-->
     <div class="row py-3 m-0 align-items-center">
     <div class="col-12 col-md-auto ps-2 py-2 mx-2">
@@ -149,17 +136,17 @@ export default {
     <div class="col-12 col-md-9">
         <div class="d-flex flex-wrap align-items-center justify-content-end">
             <div class="col-auto">
-                <input type="checkbox" id="custom-check-medical" checked="">
+                <input type="checkbox" id="custom-check-medical" v-model="extraInjuryCoverage">
                 <label for="custom-check-medical">傷害醫療</label>
             </div>
             <div class="col"></div>
             <div class="col-auto col-sm-4 col-lg-2 mb-2 text-end">
                 <select id="medical-amt" name="MedicalAmt" class="form-select">
-                    <option value="150" selected="">150萬</option>
+                    <option value="150" selected="">{{insuranceAmount * 0.1}}萬</option>
                 </select>
             </div>
             <div class="col-2 col-lg-1 mb-2 text-end d-flex justify-content-end align-items-center p-1">
-                <span>131</span>
+                <span>{{Math.floor(insuranceCost/3)}}</span>
             </div>
             <div class="col-auto d-flex align-items-center">
                 元
@@ -167,21 +154,21 @@ export default {
         </div>
         <div>
             <div class="d-flex flex-wrap justify-content-end">
-                <div class="col-auto">
-                    <input type="checkbox" id="custom-check-abroad" name="add-checkbox">
+                <div class="col-auto"  v-if="isOverseas">
+                    <input type="checkbox" id="custom-check-abroad" name="add-checkbox" v-model="extraEmergencyCoverage">
                     <label for="custom-check-abroad">海外突發疾病醫療</label>
                     <i class="fas fa-question-circle" data-bs-toggle="modal" data-bs-target="#js-annex-terms"></i>
                 </div>
                 <div class="col"></div>
-                <div class="col-auto col-sm-4 col-lg-2 mb-2 text-end">
+                <div class="col-auto col-sm-4 col-lg-2 mb-2 text-end" v-if="isOverseas">
                     <select id="abroad-amt" name="AbroadAmt" class="form-select">
-                        <option value="150" selected="">150萬</option>
+                        <option value="150" selected="">{{insuranceAmount * 0.1}}萬</option>
                     </select>
                 </div>
-                <div class="col-2 col-lg-1 mb-2 text-end d-flex justify-content-end align-items-center p-1">
-                    <span>317</span>
+                <div class="col-2 col-lg-1 mb-2 text-end d-flex justify-content-end align-items-center p-1" v-if="isOverseas">
+                    <span>{{Math.floor(insuranceCost * 0.8)}}</span>
                 </div>
-                <div class="col-auto d-flex align-items-center">
+                <div class="col-auto d-flex align-items-center" v-if="isOverseas">
                     元
                 </div>
             </div>
@@ -189,8 +176,8 @@ export default {
         <div>
             <div>
                 <div class="d-flex flex-wrap justify-content-end">
-                    <div class="col-auto">
-                        <input type="checkbox" id="custom-check-transport" name="add-checkbox">
+                    <div class="col-auto"  v-if="isOverseas">
+                        <input type="checkbox" id="custom-check-transport" name="add-checkbox" v-model="extraTransportCoverage">
                         <label for="custom-check-transport">海外醫療專機運送</label>
                         <i class="fas fa-question-circle" data-bs-toggle="modal" data-bs-target="#js-annex-terms"></i>
                         <div style="display: none;">
@@ -198,10 +185,10 @@ export default {
                         </div>
                     </div>
                     <div class="col"></div>
-                    <div class="col-2 col-lg-1 mb-2 text-end d-flex justify-content-end align-items-center p-1">
-                        <span>165</span>
+                    <div class="col-2 col-lg-1 mb-2 text-end d-flex justify-content-end align-items-center p-1" v-if="isOverseas">
+                        <span>{{Math.floor(insuranceCost/2)}}</span>
                     </div>
-                    <div class="col-auto d-flex align-items-center">
+                    <div class="col-auto d-flex align-items-center" v-if="isOverseas">
                         元
                     </div>
                 </div>
