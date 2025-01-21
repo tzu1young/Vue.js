@@ -1,5 +1,6 @@
 <script setup>
 import CalculatorComponent from '@/components/CalculatorComponent.vue';
+import ProductDetailComponent from '@/components/ProductDetailComponent.vue';
 import ProductSloganComponent from '@/components/ProductSloganComponent.vue';
 
 
@@ -9,6 +10,9 @@ import ProductSloganComponent from '@/components/ProductSloganComponent.vue';
 <template>
     <div>
         <ProductSloganComponent></ProductSloganComponent>
+    </div>
+    <div>
+        <ProductDetailComponent></ProductDetailComponent>
     </div>
 <div>
     <CalculatorComponent></CalculatorComponent>
