@@ -1,5 +1,6 @@
 <script setup>
-import Calculator from '@/components/Calculator.vue';
+
+import ProductNavbarComponent from '@/components/ProductNavbarComponent.vue';
 import TravelAdComponent from '@/components/TravelAdComponent.vue';
 
     
@@ -9,10 +10,15 @@ import TravelAdComponent from '@/components/TravelAdComponent.vue';
     <div>
 <h2>旅平險</h2>
 <div>
-
     <TravelAdComponent></TravelAdComponent>
 </div>
-<Calculator></Calculator>
+<div>
+    <ProductNavbarComponent></ProductNavbarComponent>
+</div>
+<div>
+    
+  </div>
+
 <ul>
     <li>
         <!-- <RouterLink :to="{ name: 'travel' }">旅平險</RouterLink> -->
@@ -25,5 +31,6 @@ import TravelAdComponent from '@/components/TravelAdComponent.vue';
 </template>
 
 <style lang="css" scoped>
+
 
 </style>
