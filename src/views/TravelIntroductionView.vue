@@ -7,7 +7,7 @@
 					<div class="bobe-section-border">
 						<div class="bobe-section-title-wrap bg-white">
 							<h3 class="bobe-section-title title-ins-intro">
-								<span class="sr-only">投保說明</span>
+								<span class="sr-only">投保規定</span>
 							</h3>
 						</div>
 						
@@ -236,5 +236,11 @@
 </template>
 
 <style lang="css" scoped>
-
+.container {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
 </style>

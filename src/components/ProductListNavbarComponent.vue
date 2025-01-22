@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
 const BASE_URL = import.meta.env.VITE_APIURL
-const API_URL = `${BASE_URL}/insuranceSpring_productlist/productlist/GetAllCategory`
+const API_URL = `${BASE_URL}/productlist/GetAllCategory`
 const categories = ref([])
 const categoryid = ref(0)
 const emit = defineEmits(["categoryClick"])

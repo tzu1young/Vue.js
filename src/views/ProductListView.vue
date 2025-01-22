@@ -14,13 +14,13 @@ const datas = ref({ "categoryid": 1})//, "is_feature": false
 const loadProducts = async () => {
     const BASE_URL = import.meta.env.VITE_APIURL
     
-    let API_URL = `${BASE_URL}/insuranceSpring_productlist/productlist/GetAllProduct`;
+    let API_URL = `${BASE_URL}/productlist/GetAllProduct`;
 
     // 根据分类ID决定 API 路径
     if (datas.value.categoryid !== 0) {
         Object.keys(products).forEach(key => delete products[key]);
         
-        API_URL = `${BASE_URL}/insuranceSpring_productlist/productlist/GetAllProduct/${datas.value.categoryid}`;
+        API_URL = `${BASE_URL}/productlist/GetAllProduct/${datas.value.categoryid}`;
     }   
     const response = await axios.get(API_URL)
     Object.assign(products, response.data)
